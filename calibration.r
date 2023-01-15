@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 path = getwd();
 source(paste(path, "/install.r", sep=""));
-source(paste(path, "/heston2.R", sep=""));
+source(paste(path, "/heston.r", sep=""));
 
 #  Heston Model Calibration
 # 
@@ -23,7 +23,7 @@ source(paste(path, "/heston2.R", sep=""));
 
 # PC==1 for calls, PC==2 is for puts
 # dateO == min(dateO) selects the first dates only (Wednesdays here)
-data <- readMat("file.mat");
+data <- readMat("historical.mat");
 indx = which(data$PC == 2 & data$dateO == min(data$dateO));
 
 K <- data$K;
@@ -74,7 +74,7 @@ function(
         startparameters[3], # kappa mean reversion speed of  volatility
         startparameters[4], # sigma volatility of volatility
         startparameters[5], # rho correlation between returns volatility
-        # alphas = c(0) # alpha can be a vector supplied by the user, otherwise the function attempts to find a payoff-dependent optimal alpha
+        alphas = NA # alpha can be a vector supplied by the user, otherwise the function attempts to find a payoff-dependent optimal alpha
     );
 }
 
