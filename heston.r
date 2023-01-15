@@ -33,8 +33,6 @@ function(PC, S, K, T, t, r, q, v0, theta, rho, kappa, sigma, alphas=NA) {
     #  Author: 0xAlbert, 2023
     #  
 
-    print(glue::glue("got v0 {v0}  theta {theta}  rho {rho}  kappa {kappa}  sigma {sigma}  alphas {alphas}"))
-
     # force column vector
     PC <- as.numeric(PC)
     S <- as.numeric(S)
@@ -126,7 +124,7 @@ function(PC, S, K, T, t, r, q, v0, theta, rho, kappa, sigma, alphas=NA) {
         # print(integral)
 
         if (PC[ind] == 2) {
-          prices[ind] <- prices[ind] + K[ind] * exp(-r[ind] * tau[ind])-S[ind] * exp(-q[ind]*tau[ind])
+          prices[ind] <- prices[ind] + K[ind] * exp(-r[ind] * tau[ind]) - S[ind] * exp(-q[ind] * tau[ind])
         }
     }
 
@@ -141,7 +139,7 @@ function(PC, S, K, T, t, r, q, v0, theta, rho, kappa, sigma, alphas=NA) {
 
 psi <- function(alpha, K, F, kappa, theta, rho, sigma, tau, v0) {
     k <- log(K)
-    p <- -alpha * k + 0.5 * log(phi(-(alpha + 1) * 1i, K, alpha, F, kappa, theta, rho, sigma, tau, v0) ^2)
+    p <- -alpha * k + 0.5 * log(phi(-(alpha + 1) * 1i, K, alpha, F, kappa, theta, rho, sigma, tau, v0)^2)
 }
 
 Ralpha <- function(F, K, alpha) { 
@@ -181,7 +179,7 @@ G <- function(u, rho, sigma, kappa) {
 }
 
 D <- function(u, rho, sigma, kappa) { 
-    d = beta(u, rho, sigma, kappa) ^2
+    d = beta(u, rho, sigma, kappa)^2
     x <- d * -4 * alphahat(u) * gamma(sigma);
     x <- sqrt(x);
 }
