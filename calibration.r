@@ -4,9 +4,7 @@ source(paste(path, "/install.r", sep=""));
 source(paste(path, "/heston.r", sep=""));
 
 #  Heston Model Calibration
-# 
-#  Options2011: set of options with on index
-#  
+#   
 #  Original author: Jonathan Frei, 2015
 #  Author: 0xAlbert, 2023
 # 
